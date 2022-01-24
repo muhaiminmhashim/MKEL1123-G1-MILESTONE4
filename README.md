@@ -81,7 +81,7 @@ Part 2: Deploy training model into STM32 board
 
 ![image](https://user-images.githubusercontent.com/73817919/150870974-8a0f9575-3109-441f-8ad0-1e1458d09c08.png)
 
-8.  Edit main.cpp file by copy and paste this code from here
+8.  Edit main.cpp file by copy and paste this code from here: https://github.com/muhaiminmhashim/MKEL1123-G1-MILESTONE5/blob/main/Core/Src/main.cpp
 
 9.  Click on the hammer icon on the top side to compile the project. If for errors, fix the error and re-run. Make sure the compile pass, free from errors
 
