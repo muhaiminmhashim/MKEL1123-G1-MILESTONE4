@@ -56,3 +56,63 @@ Part 1: Image recognition training from Edge Impulse
 
 ![image](https://user-images.githubusercontent.com/73817919/150867025-93575ed9-2462-4394-ac29-024a7bd5bc29.png)
 
+######################################################################################################
+
+Part 2: Deploy training model into STM32 board
+
+1.  To deploy the pack into STM32 board, open STM32Cube IDE and start a new STM32 project.
+2.  A new window will pop out. At the top side, go to "Board Selector" and search for NUCLEO-F446RE Board as that is the board we are using. It depends on what board you are using at this part.
+3.  Enter the project name, and choose "C++" as the targeted languang. Then click on "Finish". If there is a window pop out asking whether to "Initialize all peripherals with their default mode" click "Yes". Make sure you have <project_name>.ioc tab open after clicking "Finish" button.
+4.  On the .ioc tab, go to "Pinout & Configuration" > "Computing" > "CRC". Click on "CRC" to enable it.
+
+![image](https://user-images.githubusercontent.com/73817919/150868590-1531ede5-6f57-4859-bc0a-c3c7e311e542.png)
+
+5. To upload the pack downloaded before from Edge Impulse, go to "Help" > "Manage Embedded Software Packages" > "From Local...". Then, search for the downloaded pack from your local computer and select it. A window pop out for license agreement will show. Read the "License and Agreement" and click "Yes" if you agree with it. The pack will be installed after you clicking "Yes".
+
+![image](https://user-images.githubusercontent.com/73817919/150869139-fd253a15-e81d-43f6-a457-455b8a01bf87.png)
+
+6.  After have the pack installed. Go back to .ioc tab and  go to "Pinout & Configuration" > "Software packs" > "Select components". Select the pack you previously installed and under selection, click on the checkbox to use the pack. Then go back to .ioc tab, go to "Pinout & Configuration" > "Software Packs". Select the pack you installed, and under "Mode" check the checkbox. 
+
+![image](https://user-images.githubusercontent.com/73817919/150869565-3dc95512-b415-4bb2-b7dd-f013487dc777.png)
+
+![image](https://user-images.githubusercontent.com/73817919/150870005-e280c2ad-d1cb-40d5-9d91-2f70e3a356db.png)
+
+7. Done for the pack installed part. Next we will upload the pack into the board. To do so, we save the configuration we have done on .ioc tab then a window pop out will show to generate the code. Click "Yes". This is the important part, make sure "Middleware" folder is generated because this is where all your impulse and required libraries. Rename the main.c file under Core/Src to main.cpp as C++ languange is preferred.
+
+![image](https://user-images.githubusercontent.com/73817919/150870974-8a0f9575-3109-441f-8ad0-1e1458d09c08.png)
+
+8.  Edit main.cpp file by copy and paste this code from here
+
+9.  Click on the hammer icon on the top side to compile the project. If for errors, fix the error and re-run. Make sure the compile pass, free from errors
+
+![image](https://user-images.githubusercontent.com/73817919/150871987-14fbc06b-b5cb-4921-9c85-8fb0c1a27864.png)
+
+10. To upload the code into board, click on the play button icon. Leave all the setting to default and make sure you already connected your board prior clicking the play button icon. This message will shows if you have successfully uploaded your code into the board.
+
+![image](https://user-images.githubusercontent.com/73817919/150872354-924a43ed-2b39-445a-ba1d-e44d077d7510.png)
+
+11. To display the output, open puTTY. Then choose "Serial" as the connection type. Set the speed to "115200". For the serial line, to know which COMx to use, open "Device Manager" to check. Below is the setting we use.
+
+![image](https://user-images.githubusercontent.com/73817919/150873176-a56c45fa-7e0a-4a01-96da-be0bf7e32d50.png)
+
+12. The result will be shown on puTTy interface as shown below.
+
+![image](https://user-images.githubusercontent.com/73817919/150873951-3463e320-f440-46c8-b696-7d9401ee8f9c.png)
+
+13. To change the dataset, we can copy the raw features of each image. To do so, go back to Edge Impulse, at the left side, choose "Live Classification" and under "Classify existing test sample" choose which image you want to have its raw features. Then click the "Load sample" and wait for classification result comes out. Then, copy the raw features and paste it into this line of code in main.cpp file.
+
+![image](https://user-images.githubusercontent.com/73817919/150874335-8f6f30fa-0f72-4327-afdb-e103e5ffde37.png)
+
+![image](https://user-images.githubusercontent.com/73817919/150874369-a1e7ed0f-f9ba-4974-8e5a-e8646de3030f.png)
+
+######################################################################################################
+
+Reference:
+1.  https://docs.edgeimpulse.com/docs/using-cubeai
+2.  https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0256630
+3.  https://www.hindawi.com/journals/cmmm/2021/8854892/
+4.  https://pubmed.ncbi.nlm.nih.gov/34492046/
+
+
+
+
